@@ -1,0 +1,89 @@
+{
+    "tasks": {
+        "check": "deno fmt --check && deno lint && deno check **/*.ts && deno check **/*.tsx",
+        "cli": "echo \"import '\\$fresh/src/dev/cli.ts'\" | deno run --unstable -A -",
+        "manifest": "deno task cli manifest $(pwd)",
+        "start": "deno run -A --watch=static/,routes/ dev.ts",
+        "build": "deno run -A dev.ts build",
+        "preview": "deno run -A main.ts",
+        "update": "deno run -A -r https://fresh.deno.dev/update ."
+    },
+    "compilerOptions": {
+        "allowUnreachableCode": false,
+        "allowUnusedLabels": false,
+        "exactOptionalPropertyTypes": true,
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitOverride": true,
+        "noImplicitReturns": true,
+        "noPropertyAccessFromIndexSignature": true,
+        "noUncheckedIndexedAccess": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "jsx": "react-jsx",
+        "jsxImportSource": "preact",
+        "lib": [
+            "dom",
+            "dom.iterable",
+            "dom.asynciterable",
+            "deno.ns"
+        ]
+    },
+    "fmt": {
+        "useTabs": true,
+        "lineWidth": 80,
+        "indentWidth": 2,
+        "semiColons": true,
+        "singleQuote": false,
+        "proseWrap": "preserve",
+        "exclude": []
+    },
+    "lock": false,
+    "lint": {
+        "rules": {
+            "tags": [
+                "fresh",
+                "recommended"
+            ],
+            "include": [
+                "ban-untagged-todo",
+                "camelcase",
+                "default-param-last",
+                "eqeqeq",
+                "explicit-function-return-type",
+                "explicit-module-boundary-types",
+                "guard-for-in",
+                "no-await-in-loop",
+                "no-const-assign",
+                "no-eval",
+                "no-external-import",
+                "no-implicit-declare-namespace-export",
+                "no-inferrable-types",
+                "no-non-null-asserted-optional-chain",
+                "no-non-null-assertion",
+                "no-self-compare",
+                "no-sparse-arrays",
+                "no-sync-fn-in-async-fn",
+                "no-throw-literal",
+                "no-top-level-await",
+                "no-undef",
+                "prefer-ascii",
+                "single-var-declarator",
+                "triple-slash-reference",
+                "verbatim-module-syntax"
+            ]
+        },
+        "exclude": [
+            "**/_fresh/*"
+        ]
+    },
+    "imports": {
+        "$fresh/": "https://deno.land/x/fresh@1.7.3/",
+        "preact": "https://esm.sh/preact@10.24.3",
+        "preact/": "https://esm.sh/preact@10.24.3/",
+        "@preact/signals": "https://esm.sh/*@preact/signals@1.3.0",
+        "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.8.0",
+        "tailwindcss": "https://esm.sh/tailwindcss@3.4.14",
+        "tailwindcss/": "https://esm.sh/tailwindcss@3.4.14/",
+        "tailwindcss/plugin": "https://esm.sh/tailwindcss@3.4.14/plugin.js"
+    }
+}
