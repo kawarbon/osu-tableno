@@ -20,9 +20,9 @@ Tested with [OpenTabletDriver](https://github.com/OpenTabletDriver/OpenTabletDri
 
   - 🖥️ 1920x1080 (16:9)
 
-  - 🪟 1440x1080 (4:3)
+  - 🎮🪟 1440x1080 (4:3)
 
-  - 🎨 One by Wacom (CTL-471)
+  - 🎨 One by Wacom (CTL-472)
 
 - ### Software (osu!Stable)
 
