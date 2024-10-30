@@ -1,31 +1,18 @@
-import type {
-    CalculatedArea,
-    ScreenResolution,
-    TabletDimensions,
-} from "./types/tablet.ts";
+import type { CalculatedArea, TabletDimensions } from "./types/tablet.ts";
 
-const BASE_OSU_RESOLUTION = { width: 640, height: 480 };
 const PLAYFIELD = { width: 512, height: 384 };
 
 export function calculateOptimalArea(
     dimensions: TabletDimensions,
-    resolution: ScreenResolution,
     percentage: number,
 ): CalculatedArea {
-    const screenScaling = resolution.height / BASE_OSU_RESOLUTION.height;
-    const playfield = {
-        width: PLAYFIELD.width * screenScaling,
-        height: PLAYFIELD.height * screenScaling,
-    };
-
-    const screenUsageRatio = resolution.height / playfield.width * 100;
-    const effectivePlayfieldWidth = resolution.width *
-        (screenUsageRatio / 100);
-
     const tabletArea = {
         width: dimensions.width * (percentage / 100),
         height: dimensions.height * (percentage / 100),
     };
+
+    tabletArea.width = tabletArea.height * (4 / 3);
+    tabletArea.width = Math.min(tabletArea.width, dimensions.width);
 
     const targetRatio = 4 / 3;
     const currentRatio = tabletArea.width / tabletArea.height;
@@ -34,12 +21,18 @@ export function calculateOptimalArea(
         tabletArea.width = tabletArea.height * targetRatio;
     }
 
+    tabletArea.width = Math.min(tabletArea.width, dimensions.width);
+    tabletArea.height = Math.min(tabletArea.height, dimensions.height);
+
     return {
         area: tabletArea,
         scaling: {
-            screen: screenScaling,
-            playfield: playfield,
-            effectiveWidth: effectivePlayfieldWidth,
+            screen: 1,
+            playfield: {
+                width: PLAYFIELD.width,
+                height: PLAYFIELD.height,
+            },
+            effectiveWidth: PLAYFIELD.width,
             horizontalPixelsPerMM: (PLAYFIELD.width / tabletArea.width),
             verticalPixelsPerMM: (PLAYFIELD.height / tabletArea.height),
         },
