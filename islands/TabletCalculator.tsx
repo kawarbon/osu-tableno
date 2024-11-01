@@ -1,6 +1,7 @@
 import { useSignal } from "@preact/signals";
 import type { JSX } from "preact";
 import { useEffect } from "preact/hooks";
+import TabletAreaVisualiser from "../components/TabletAreaVisualiser.tsx";
 import { TabletForm } from "../components/TabletForm.tsx";
 import { TabletResultDisplay } from "../components/TabletResultDisplay.tsx";
 import TabletSlider from "../components/TabletSlider.tsx";
@@ -12,6 +13,7 @@ export default function TabletCalculator(): JSX.Element {
     const areaPercentage = useSignal(50);
     const calculationResult = useSignal("");
     const displaySize = useSignal({ width: 0, height: 0 });
+    const currentArea = useSignal({ width: 0, height: 0 });
 
     useEffect(() => {
         displaySize.value = {
@@ -43,6 +45,11 @@ export default function TabletCalculator(): JSX.Element {
 
         // full area if 100%
         if (areaPercentage.value === 100) {
+            currentArea.value = {
+                width: tablet.width,
+                height: tablet.height,
+            };
+
             calculationResult.value =
                 `${tablet.width.toFixed(1)} x ${
                     tablet.height.toFixed(1)
@@ -58,6 +65,11 @@ export default function TabletCalculator(): JSX.Element {
         const scale = areaPercentage.value / 100;
         const baseWidth = tablet.width;
         const targetHeight = baseWidth * (3 / 4); // 4:3 aspect ratio
+
+        currentArea.value = {
+            width: baseWidth * scale,
+            height: targetHeight * scale,
+        };
 
         const scaledWidth = baseWidth * scale;
         const scaledHeight = targetHeight * scale;
@@ -77,6 +89,11 @@ export default function TabletCalculator(): JSX.Element {
 
     return (
         <div class="space-y-6">
+            <TabletAreaVisualiser
+                width={currentArea.value.width}
+                height={currentArea.value.height}
+            />
+
             <div class="grid grid-cols-2 gap-4">
                 <TabletForm
                     selectedBrand={selectedBrand.value}
