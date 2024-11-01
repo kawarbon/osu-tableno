@@ -34,4 +34,5 @@ I have tested this using [OpenTabletDriver](https://github.com/OpenTabletDriver/
 
 ## Contributions
 
+@ekgame for wanting a (simple) visualiser.
 @jamesbt365 for telling me about osu!'s weird quirk regarding multi-monitor setup, various suggestions, and additions of MAAAAAAAANY Wacom tablets.
