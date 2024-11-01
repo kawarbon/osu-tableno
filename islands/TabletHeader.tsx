@@ -28,6 +28,7 @@ export default function TabletHeader(): JSX.Element {
                     </a>
                 </div>
             </div>
+
             <TabletInfoModal
                 isOpen={isModalOpen.value}
                 onClose={() => isModalOpen.value = false}

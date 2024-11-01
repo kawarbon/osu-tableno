@@ -1,7 +1,7 @@
 import { Head } from "$fresh/runtime.ts";
 import type { JSX } from "preact/jsx-runtime";
-import TabletHeader from "../islands/TabletHeader.tsx";
 import TabletCalculator from "../islands/TabletCalculator.tsx";
+import TabletHeader from "../islands/TabletHeader.tsx";
 
 export default function Home(): JSX.Element {
   return (
