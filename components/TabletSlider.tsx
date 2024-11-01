@@ -3,10 +3,11 @@ import type { JSX } from "preact/jsx-runtime";
 interface TabletSliderProps {
     value: number;
     onChange: (value: number) => void;
+    disabled: boolean;
 }
 
 export default function TabletSlider(
-    { value, onChange }: TabletSliderProps,
+    { value, onChange, disabled }: TabletSliderProps,
 ): JSX.Element {
     return (
         <fieldset className="relative rounded-lg border border-gray-200 dark:border-gray-600 px-4 pb-4 pt-2">
@@ -28,6 +29,7 @@ export default function TabletSlider(
                     min="1"
                     max="100"
                     value={value}
+                    disabled={disabled}
                     onInput={(event): void => {
                         onChange(
                             Number((event.target as HTMLInputElement).value),
@@ -35,13 +37,6 @@ export default function TabletSlider(
                     }}
                     className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700 accent-blue-600 dark:accent-blue-500"
                 />
-                {
-                    /* <div className="mt-1 grid grid-cols-3 text-xs text-gray-500 dark:text-gray-400">
-                    <span className="text-left">1%</span>
-                    <span className="text-center">50%</span>
-                    <span className="text-right">100%</span>
-                </div> */
-                }
             </div>
         </fieldset>
     );
