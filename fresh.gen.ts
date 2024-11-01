@@ -5,6 +5,7 @@
 import * as $_app from "./routes/_app.tsx";
 import * as $index from "./routes/index.tsx";
 import * as $TabletCalculator from "./islands/TabletCalculator.tsx";
+import * as $TabletHeader from "./islands/TabletHeader.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -14,6 +15,7 @@ const manifest = {
 	},
 	islands: {
 		"./islands/TabletCalculator.tsx": $TabletCalculator,
+		"./islands/TabletHeader.tsx": $TabletHeader,
 	},
 	baseUrl: import.meta.url,
 } satisfies Manifest;
