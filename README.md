@@ -15,7 +15,7 @@ Additionally, you can click `(i)` icon to understand logic behind calculations
 
 ## Testing
 
-I have tested this using [OpenTabletDriver](https://github.com/OpenTabletDriver/OpenTabletDriver) and the following configuration, and those configurations worked for me, but they may not work for you:
+I have tested this using [OpenTabletDriver](https://github.com/OpenTabletDriver/OpenTabletDriver). While following configuration worked for me, it may not work for you:
 
 - 🖥️ 1920x1080 (16:9)
 
@@ -30,7 +30,7 @@ I have tested this using [OpenTabletDriver](https://github.com/OpenTabletDriver/
 - ✅ Map absolute raw input to the osu! window
 
 > [!WARNING]
-> If you have a multi-monitor setup, disable "Map absolute raw input to the osu! window". as @jamesbt365 pointed out, causes breaking. Don't know how, don't know why.
+> If you have a multi-monitor setup, disable "Map absolute raw input to the osu! window". As @jamesbt365 pointed out, this setting causes breaking. Don't know how, don't know why.
 
 ## Contributions
 
