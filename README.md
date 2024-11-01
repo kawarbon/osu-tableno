@@ -11,6 +11,8 @@ See also:
 1. Select your tablet brand and model
 2. Adjust percentage slider to find your optimal tablet area
 
+Additionally, you can click `(i)` icon to understand logic behind calculations
+
 ## Testing
 
 I have tested this using [OpenTabletDriver](https://github.com/OpenTabletDriver/OpenTabletDriver) and the following configuration, and those configurations worked for me, but they may not work for you:
