@@ -9,11 +9,6 @@ export interface TabletBrands {
     };
 }
 
-export interface ScreenResolution {
-    width: number;
-    height: number;
-}
-
 export interface CalculatedArea {
     area: TabletDimensions;
     scaling: {
@@ -27,5 +22,3 @@ export interface CalculatedArea {
         verticalPixelsPerMM: number;
     };
 }
-
-export type AspectRatioMode = "standard" | "widescreen";
