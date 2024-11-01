@@ -26,7 +26,6 @@ export const TABLETS: TabletBrands = {
         "CTH-670": { width: 216.48, height: 137 },
         "CTL-471": { width: 152, height: 95 },
         "CTL-472": { width: 152, height: 95 },
-        "CTL-480": { width: 152, height: 95 },
         "CTL-4100": { width: 152, height: 95 },
         "CTL-4100WL": { width: 152, height: 95 },
         "CTL-671": { width: 216, height: 135 },
