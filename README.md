@@ -11,7 +11,6 @@ See also:
 ## Usage
 
 1. Select your tablet brand and model
-2. Choose your desired game resolution
 3. Adjust percentage slider to find your optimal tablet area
 
 Tested with [OpenTabletDriver](https://github.com/OpenTabletDriver/OpenTabletDriver) using:
