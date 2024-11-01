@@ -10,13 +10,13 @@ export default function TabletAreaVisualiser(
 ): JSX.Element {
     return (
         <div class="flex justify-center items-center">
-            <div class="relative w-[400px] h-[225px] bg-gray-100 dark:bg-gray-700 rounded-lg overflow-hidden">
+            <div class="relative w-[400px] h-[225px] bg-gray-50 dark:bg-gray-700 rounded-lg overflow-hidden">
                 <div
                     class="absolute inset-0"
                     style={{
                         backgroundImage:
-                            "linear-gradient(to right, #44444440 1px, transparent 1px), linear-gradient(to bottom, #44444440 1px, transparent 1px)",
-                        backgroundSize: "10px 10px",
+                            "linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px)",
+                        backgroundSize: "12.5px 12.5px", // 400/32, 225/18
                     }}
                 >
                 </div>
