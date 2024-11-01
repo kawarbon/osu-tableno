@@ -4,7 +4,6 @@ import { useEffect } from "preact/hooks";
 import { TabletForm } from "../components/TabletForm.tsx";
 import { TabletResultDisplay } from "../components/TabletResultDisplay.tsx";
 import TabletSlider from "../components/TabletSlider.tsx";
-import { calculateOptimalArea } from "../utils/calculations.ts";
 import { TABLETS } from "../utils/constants/tablets.ts";
 
 export default function TabletCalculator(): JSX.Element {
@@ -12,11 +11,23 @@ export default function TabletCalculator(): JSX.Element {
     const selectedModel = useSignal("");
     const areaPercentage = useSignal(50);
     const calculationResult = useSignal("");
+    const displaySize = useSignal({ width: 0, height: 0 });
+
+    useEffect(() => {
+        displaySize.value = {
+            width: globalThis.screen.width,
+            height: globalThis.screen.height,
+        };
+    }, []);
 
     const handleBrandChange = (event: Event): void => {
         const target = event.target as HTMLSelectElement;
         selectedBrand.value = target.value;
         selectedModel.value = "";
+    };
+
+    const isSliderEnabled = (): boolean => {
+        return selectedBrand.value !== "" && selectedModel.value !== "";
     };
 
     const handleCalculate = (): void => {
@@ -26,22 +37,36 @@ export default function TabletCalculator(): JSX.Element {
 
         const tablet = TABLETS[selectedBrand.value]?.[selectedModel.value];
         if (!tablet) {
-            calculationResult.value = "Invalid tablet selection.";
+            calculationResult.value = "invalid tablet selection";
             return;
         }
 
-        const result = calculateOptimalArea(
-            tablet,
-            areaPercentage.value,
-        );
+        // full area if 100%
+        if (areaPercentage.value === 100) {
+            calculationResult.value =
+                `${tablet.width.toFixed(1)} x ${
+                    tablet.height.toFixed(1)
+                } mm\n` +
+                `px/mm: ${
+                    (displaySize.value.width / tablet.width).toFixed(1)
+                } (H), ${
+                    (displaySize.value.height / tablet.height).toFixed(1)
+                } (V)`;
+            return;
+        }
+
+        const scale = areaPercentage.value / 100;
+        const baseWidth = tablet.width;
+        const targetHeight = baseWidth * (3 / 4); // 4:3 aspect ratio
+
+        const scaledWidth = baseWidth * scale;
+        const scaledHeight = targetHeight * scale;
 
         calculationResult.value =
-            `${result.area.width.toFixed(1)} x ${
-                result.area.height.toFixed(1)
-            } mm\n` +
-            `px/mm: ${result.scaling.horizontalPixelsPerMM.toFixed(1)} (H), ${
-                result.scaling.verticalPixelsPerMM.toFixed(1)
-            } (V)`;
+            `${scaledWidth.toFixed(1)} x ${scaledHeight.toFixed(1)} mm\n` +
+            `px/mm: ${
+                (displaySize.value.width / scaledWidth).toFixed(1)
+            } (H), ${(displaySize.value.height / scaledHeight).toFixed(1)} (V)`;
     };
 
     useEffect(() => {
@@ -68,6 +93,7 @@ export default function TabletCalculator(): JSX.Element {
                 onChange={(value: number): void => {
                     areaPercentage.value = value;
                 }}
+                disabled={!isSliderEnabled()}
             />
 
             <TabletResultDisplay result={calculationResult.value} />
